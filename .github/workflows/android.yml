@@ -1,7 +1,7 @@
 name: Build APK
 
 on:
-  workflow_dispatch: # Adds a button to manually start the build
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,9 +20,8 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: |
-        # We are using gradle directly, but usually, you need the wrapper.
-        # Since we didn't upload a wrapper, we will construct the build command manually.
-gradle wrapper --gradle-version 8.5
+        # Force Gradle 8.5 to avoid version errors
+        gradle wrapper --gradle-version 8.5
         chmod +x gradlew
 
     - name: Build with Gradle
